@@ -61,17 +61,12 @@ public class component
 
     public int[] swapArrayElements(int[] arr, int delIndex)
     {
-        int[] newArray = new int[arr.length-1];
-        for(int i=0; i<arr.length-1; i++)
+        for(int i=delIndex; i<arr.length-1 ; i++)
         {
-            newArray[i] = arr[i];
+            arr[i]=arr[i+1];
         }
-        for(int i=delIndex; i<arr.length-1; i++)
-        {
-            newArray[i] = arr[i+1];
-        }
-
-        return newArray;
+        
+        return arr;
     }
 
     public int findIndex(int[] arr, int val)

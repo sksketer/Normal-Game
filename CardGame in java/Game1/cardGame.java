@@ -10,15 +10,6 @@ public class cardGame
         Print p = new Print();
         var cmp = new component();
 
-        /* int numberOfCards = 10;
-        String[] totalCards = new String[numberOfCards];
-
-        for(int i=0; i<numberOfCards; i++)
-        {
-            int values = (int)(Math.random() * 10);
-            totalCards[i] = Integer.toString(values);
-        } */
-
         int playingCards = 8;
 
         int[] computerCards = new int[playingCards];
@@ -37,8 +28,8 @@ public class cardGame
             playerCards[i] = (value);
         }
 
-        p.Sop("Computer Cards");
-        cmp.displayCards(computerCards, playingCards);
+        // p.Sop("Computer Cards");
+        // cmp.displayCards(computerCards, playingCards);
 
         p.Sop("Player Cards");
         cmp.displayCards(playerCards, playingCards);
@@ -49,9 +40,9 @@ public class cardGame
         {
             if(computerMove >= playerMove)
             {
+                p.Sop("-------------------------------\n");
                 p.pf("Round ");p.pf(round);p.Sop(" ");
                 p.Sop("Computer Turns");
-                cmp.displayCards(computerCards, playingCards);
                 computerFetchCard = cmp.fetchCard(computerCards, playingCards);
                 p.Sop(computerFetchCard);
 
@@ -61,10 +52,7 @@ public class cardGame
                 playerFetchCard = sc.nextInt();
                 playingCards--;
                 int ind = cmp.findIndex(playerCards, playerFetchCard);
-                p.pf("index is: ");
-                p.Sop(ind);
                 cmp.swapArrayElements(playerCards, ind);
-                p.Sop("-------------------------------\n");
 
                 if(playerFetchCard > computerFetchCard)
                 {
@@ -79,19 +67,21 @@ public class cardGame
             }
             else if(computerMove < playerMove)
             {
+                p.Sop("-------------------------------\n");
                 p.pf("Round ");p.pf(round);p.Sop(" ");
                 p.Sop("Player Turns");
                 p.pf("Your Cards: ");
                 cmp.displayCards(playerCards, playingCards);
                 playerFetchCard = sc.nextInt();
+                playingCards--;
+                int ind = cmp.findIndex(playerCards, playerFetchCard);
+                cmp.swapArrayElements(playerCards, ind);
 
                 p.Sop("Computer Turns");
-                cmp.displayCards(computerCards, playingCards);
                 computerFetchCard = cmp.fetchCard(computerCards, playingCards, playerFetchCard);
                 p.Sop(computerFetchCard);
                 playingCards--;
                 cmp.swapArrayElements(computerCards, 0);
-                p.Sop("-------------------------------\n");
 
                 if(playerFetchCard > computerFetchCard)
                 {
