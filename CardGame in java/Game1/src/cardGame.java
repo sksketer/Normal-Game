@@ -41,18 +41,37 @@ public class cardGame
             {
                 p.Sop("-------------------------------\n");
                 p.pf("Round ");p.pf(round);p.Sop(" ");
+
                 p.Sop("Computer Turns");
                 computerFetchCard = cmp.fetchCard(computerCards, playingCards);
                 p.Sop(computerFetchCard);
 
+                int cInd = cmp.findIndex(computerCards, computerFetchCard);
+                p.pf("index is: ");
+                p.Sop(cInd);
+                cmp.swapArrayElements(computerCards, cInd);
+
                 p.Sop("Players Turn");
                 p.pf("Your Cards: ");
                 cmp.displayCards(playerCards, playingCards);
-                playerFetchCard = sc.nextInt();
-                playingCards--;
+                Boolean cc;
+                do
+                {
+                    p.pf("Enter your card: ");
+                    playerFetchCard = sc.nextInt();
+                    cc = cmp.check(playerCards, playerFetchCard);
+                }while(cc);
+
                 int ind = cmp.findIndex(playerCards, playerFetchCard);
+                p.pf("index is: ");
+                p.Sop(ind);
                 cmp.swapArrayElements(playerCards, ind);
 
+                playingCards--;
+                p.pf("Player Hands is: ");
+                p.Sop(playerHands);
+                p.pf("computer Hands is: ");
+                p.Sop(computerHands);
                 if(playerFetchCard > computerFetchCard)
                 {
                     playerMove++;
@@ -68,20 +87,28 @@ public class cardGame
             {
                 p.Sop("-------------------------------\n");
                 p.pf("Round ");p.pf(round);p.Sop(" ");
+
                 p.Sop("Player Turns");
                 p.pf("Your Cards: ");
                 cmp.displayCards(playerCards, playingCards);
-                playerFetchCard = sc.nextInt();
-                playingCards--;
+                Boolean cc;
+                do
+                {
+                    p.pf("Enter your card: ");
+                    playerFetchCard = sc.nextInt();
+                    cc = cmp.check(playerCards, playerFetchCard);
+                }while(cc);
+
                 int ind = cmp.findIndex(playerCards, playerFetchCard);
                 cmp.swapArrayElements(playerCards, ind);
 
                 p.Sop("Computer Turns");
+                cmp.displayCards(computerCards, playingCards);
                 computerFetchCard = cmp.fetchCard(computerCards, playingCards, playerFetchCard);
                 p.Sop(computerFetchCard);
-                playingCards--;
                 cmp.swapArrayElements(computerCards, 0);
 
+                playingCards--;
                 if(playerFetchCard > computerFetchCard)
                 {
                     playerMove++;

@@ -58,6 +58,22 @@ public class operations
 
         return card;
     }
+    
+    public Boolean check(int[] arr, int val)
+    {
+        Boolean result=true;
+
+        for(int i=0; i<arr.length; i++)
+        {
+            if(val == arr[i])
+            {
+                p.Sop("Card Found");
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
 
     public int[] swapArrayElements(int[] arr, int delIndex)
     {
